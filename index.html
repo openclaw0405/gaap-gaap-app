@@ -12,7 +12,7 @@
 html{font-size:16px;-webkit-text-size-adjust:100%}
 body{
   font-family:'Noto Sans HK','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#F5F3F0;
+  background:#F8F5F1;
   color:#2C2420;
   min-height:100dvh;
   padding-bottom:80px;
@@ -24,28 +24,31 @@ body{
   background:#2C2420;color:#F5F0EA;
   padding:16px 20px 14px;
   display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 1px 0 rgba(255,255,255,.07);
 }
-.app-header h1{font-size:20px;font-weight:700;letter-spacing:0.02em}
-.app-header h1 span{color:#FFB88C}
-.header-count{font-size:13px;opacity:.7;font-weight:400}
+.app-header h1{font-size:20px;font-weight:700;letter-spacing:.03em}
+.app-header h1 span{color:#FFAD7A}
+.header-count{font-size:12px;opacity:.6;font-weight:400}
 /* ========== MAIN ========== */
 main{padding:16px;max-width:560px;margin:0 auto}
-.tab-content{display:none}
+.tab-content{display:none;animation:fadeIn .25s ease}
 .tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 /* ========== EMPTY STATE ========== */
 .empty-state{
-  text-align:center;padding:60px 20px;color:#8A7A6A;
+  text-align:center;padding:64px 20px;color:#9A8A7A;
 }
-.empty-state .icon{font-size:48px;margin-bottom:12px;opacity:.4}
-.empty-state p{font-size:15px;line-height:1.6}
+.empty-state .icon{font-size:40px;margin-bottom:16px;opacity:.3}
+.empty-state p{font-size:14px;line-height:1.7;max-width:220px;margin:0 auto}
+.empty-state p strong{color:#7A6A5A}
 /* ========== CARDS ========== */
 .card{
-  background:#fff;border-radius:14px;padding:16px;
-  box-shadow:0 1px 3px rgba(44,36,32,.08),0 1px 2px rgba(44,36,32,.04);
-  margin-bottom:12px;
-  transition:transform .12s, box-shadow .12s;
+  background:#fff;border-radius:16px;padding:16px;
+  box-shadow:0 1px 3px rgba(44,36,32,.05),0 1px 1px rgba(44,36,32,.03);
+  margin-bottom:10px;
+  border:1px solid rgba(44,36,32,.04);
+  transition:transform .15s ease, box-shadow .15s ease;
 }
-.card:active{transform:scale(.98)}
 /* ========== PEOPLE LIST ========== */
 .person-card{
   display:flex;align-items:center;gap:14px;
@@ -56,91 +59,121 @@ main{padding:16px;max-width:560px;margin:0 auto}
   background:linear-gradient(135deg,#FFB88C,#FF8A65);
   color:#fff;display:flex;align-items:center;justify-content:center;
   font-size:17px;font-weight:600;flex-shrink:0;
+  box-shadow:0 2px 6px rgba(255,138,101,.25);
 }
 .person-info{flex:1;min-width:0}
 .person-name{font-size:16px;font-weight:600}
-.person-balance{font-size:13px;margin-top:2px}
-.person-balance.positive{color:#2E7D6F}
-.person-balance.negative{color:#D1453B}
-.person-balance.zero{color:#9A8A7A}
+.person-balance{font-size:13px;margin-top:3px}
+.person-balance.positive{color:#2A7A6B;font-weight:500}
+.person-balance.negative{color:#CC3D33;font-weight:500}
+.person-balance.zero{color:#B0A090}
 .btn-delete{
-  background:none;border:none;color:#C0B0A0;cursor:pointer;
-  font-size:18px;padding:4px 8px;border-radius:8px;transition:.12s;
-  line-height:1;
+  background:none;border:none;color:#C8BEB0;cursor:pointer;
+  font-size:16px;padding:6px 10px;border-radius:8px;transition:.12s;
+  line-height:1;opacity:.5;
 }
-.btn-delete:hover{background:#FEE;color:#D1453B}
+.btn-delete:hover{opacity:1;background:#F9EDED;color:#CC3D33}
 /* ========== ACTIVITY CARD ========== */
 .activity-card{padding:14px 16px}
-.activity-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:8px}
-.activity-title{font-size:16px;font-weight:600}
-.activity-date{font-size:12px;color:#9A8A7A}
-.activity-amount{font-size:22px;font-weight:700;color:#2C2420}
-.activity-meta{font-size:13px;color:#6A5A4A;line-height:1.5}
+.activity-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.activity-title{font-size:16px;font-weight:600;line-height:1.3}
+.activity-date{font-size:12px;color:#B0A090;margin-top:2px}
+.activity-amount{font-size:22px;font-weight:700;color:#2C2420;white-space:nowrap}
+.activity-meta{font-size:13px;color:#7A6A5A;line-height:1.5}
 .activity-meta strong{color:#2C2420}
-.activity-participants{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.activity-participants{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid #F0EBE5}
 .participant-tag{
   background:#F0EBE5;color:#5A4A3A;font-size:11px;
-  padding:2px 10px;border-radius:20px;font-weight:500;
+  padding:3px 11px;border-radius:20px;font-weight:500;
+  letter-spacing:.01em;
 }
-.participant-tag.paid{background:#E8F3EF;color:#2E7D6F}
+.participant-tag.paid{background:#E8F3EF;color:#2A7A6B;font-weight:600}
 /* ========== SETTLEMENT ========== */
-.settlement-card{padding:16px}
-.settlement-card h3{font-size:15px;font-weight:600;margin-bottom:12px;color:#5A4A3A}
-.settlement-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.settlement-card{padding:18px}
+.settlement-card h3{font-size:14px;font-weight:600;margin-bottom:14px;color:#6A5A4A;letter-spacing:.02em}
+.settlement-total{text-align:center;padding:6px 0 2px}
+.settlement-total .label{font-size:12px;color:#9A8A7A;margin-bottom:4px}
+.settlement-total .val{font-size:28px;font-weight:700}
+.settlement-summary{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
 .balance-item{
-  background:#FAF8F5;border-radius:10px;padding:12px;text-align:center;
+  display:flex;align-items:center;gap:12px;
 }
-.balance-item .name{font-size:13px;color:#6A5A4A;margin-bottom:4px}
-.balance-item .amount{font-size:18px;font-weight:700}
+.balance-item .name{font-size:13px;font-weight:600;color:#5A4A3A;min-width:56px}
+.balance-item .bar-wrap{flex:1;height:28px;background:#F0EBE5;border-radius:14px;overflow:hidden;position:relative}
+.balance-item .bar-fill{
+  height:100%;border-radius:14px;transition:width .5s ease;
+  min-width:4px;
+}
+.balance-item .bar-fill.positive{background:linear-gradient(90deg,#38A08E,#2A7A6B)}
+.balance-item .bar-fill.negative{background:linear-gradient(90deg,#E8655C,#CC3D33)}
+.balance-item .bar-fill.zero{background:#D5CDC5;width:4px!important}
+.balance-item .bar-label{
+  position:absolute;inset:0;display:flex;align-items:center;padding:0 12px;
+  font-size:12px;font-weight:600;white-space:nowrap;
+}
+.bar-label.light{color:#fff}
+.bar-label.dark{color:#5A4A3A}
+.balance-item .amount{font-size:14px;font-weight:700;min-width:80px;text-align:right}
+.balance-item .amount.positive{color:#2A7A6B}
+.balance-item .amount.negative{color:#CC3D33}
+.balance-item .amount.zero{color:#B0A090}
 .debt-item{
   display:flex;align-items:center;gap:10px;
-  padding:10px 0;border-bottom:1px solid #F0EBE5;
+  padding:11px 0;border-bottom:1px solid #F0EBE5;
 }
 .debt-item:last-child{border-bottom:none}
-.debt-item .arrow{color:#C0B0A0;font-size:14px}
+.debt-item .arrow{color:#C8BEB0;font-size:14px}
 .debt-item .from{font-weight:600;font-size:14px}
 .debt-item .to{font-weight:600;font-size:14px}
-.debt-item .amount{font-weight:700;color:#D1453B;margin-left:auto;font-size:15px}
+.debt-item .amount{font-weight:700;color:#CC3D33;margin-left:auto;font-size:15px}
+.debt-summary{font-size:12px;color:#9A8A7A;text-align:center;padding-top:12px;margin-top:12px;border-top:1px solid #F0EBE5}
 /* ========== BUTTONS ========== */
 .fab{
   position:fixed;bottom:96px;right:20px;
   width:56px;height:56px;border-radius:50%;
   background:#2C2420;color:#fff;border:none;
-  font-size:28px;cursor:pointer;
-  box-shadow:0 4px 12px rgba(44,36,32,.3);
+  font-size:26px;cursor:pointer;font-weight:300;
+  box-shadow:0 4px 16px rgba(44,36,32,.25),0 2px 4px rgba(44,36,32,.1);
   display:flex;align-items:center;justify-content:center;
-  transition:.15s;z-index:40;
+  transition:.18s cubic-bezier(.34,1.56,.64,1);z-index:40;
 }
-.fab:active{transform:scale(.92);box-shadow:0 2px 6px rgba(44,36,32,.2)}
+.fab:active{transform:scale(.88);box-shadow:0 2px 8px rgba(44,36,32,.18)}
 /* ========== TAB BAR ========== */
 .tab-bar{
   position:fixed;bottom:0;left:0;right:0;z-index:50;
   background:#fff;border-top:1px solid #EDE8E0;
-  display:flex;padding:6px 0 env(safe-area-inset-bottom,6px) 0;
-  box-shadow:0 -2px 8px rgba(44,36,32,.06);
+  display:flex;padding:4px 0 env(safe-area-inset-bottom,4px) 0;
+  box-shadow:0 -2px 12px rgba(44,36,32,.04);
 }
 .tab-item{
   flex:1;display:flex;flex-direction:column;align-items:center;
-  gap:2px;padding:6px 0;border:none;background:none;
-  cursor:pointer;color:#9A8A7A;transition:.15s;
+  gap:1px;padding:8px 0 6px;border:none;background:none;
+  cursor:pointer;color:#B0A090;transition:.15s;
   font-size:11px;font-weight:500;font-family:inherit;
+  position:relative;
 }
-.tab-item .tab-icon{font-size:22px;line-height:1}
-.tab-item.active{color:#2C2420}
+.tab-item::after{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:24px;height:3px;border-radius:0 0 4px 4px;
+  background:#FF8A65;opacity:0;transition:opacity .2s;
+}
+.tab-item.active::after{opacity:1}
+.tab-item .tab-icon{font-size:22px;line-height:1;margin-bottom:1px}
+.tab-item.active{color:#2C2420;font-weight:600}
 .tab-item.active .tab-icon{color:#FF8A65}
 /* ========== MODAL ========== */
 .modal-overlay{
   position:fixed;inset:0;z-index:100;
-  background:rgba(44,36,32,.5);backdrop-filter:blur(4px);
+  background:rgba(44,36,32,.45);backdrop-filter:blur(6px);
   display:flex;align-items:flex-end;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .2s;
+  opacity:0;pointer-events:none;transition:opacity .25s;
 }
 .modal-overlay.open{opacity:1;pointer-events:auto}
 .modal-sheet{
-  background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:560px;
+  background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:560px;
   padding:24px 20px env(safe-area-inset-bottom,20px) 20px;
   max-height:85vh;overflow-y:auto;
-  transform:translateY(100%);transition:transform .25s cubic-bezier(.32,.72,0,1);
+  transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);
 }
 .modal-overlay.open .modal-sheet{transform:translateY(0)}
 .modal-handle{
@@ -151,80 +184,84 @@ main{padding:16px;max-width:560px;margin:0 auto}
 .form-group{margin-bottom:16px}
 .form-group label{display:block;font-size:13px;font-weight:600;color:#5A4A3A;margin-bottom:6px}
 .form-input,.form-select{
-  width:100%;padding:12px 14px;border:1.5px solid #E0D8D0;border-radius:10px;
-  font-size:15px;font-family:inherit;background:#fff;transition:.12s;
+  width:100%;padding:12px 14px;border:1.5px solid #E0D8D0;border-radius:12px;
+  font-size:15px;font-family:inherit;background:#fff;transition:.15s;
   color:#2C2420;
 }
-.form-input:focus,.form-select:focus{outline:none;border-color:#2C2420;box-shadow:0 0 0 3px rgba(44,36,32,.1)}
-.form-input.error{border-color:#D1453B}
-.checkbox-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.form-input:focus,.form-select:focus{outline:none;border-color:#2C2420;box-shadow:0 0 0 3px rgba(44,36,32,.08)}
+.form-input.error{border-color:#CC3D33}
+.checkbox-group{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .checkbox-label{
   display:flex;align-items:center;gap:8px;
-  padding:8px 14px;border:1.5px solid #E0D8D0;border-radius:10px;
-  font-size:14px;cursor:pointer;transition:.12s;user-select:none;
+  padding:10px 14px;border:1.5px solid #E0D8D0;border-radius:12px;
+  font-size:14px;cursor:pointer;transition:.15s;user-select:none;
 }
-.checkbox-label.checked{background:#2C2420;color:#fff;border-color:#2C2420}
-.checkbox-label input{display:none}
+.checkbox-label.checked{background:#2C2420;color:#fff;border-color:#2C2420;box-shadow:0 1px 4px rgba(44,36,32,.12)}
+.checkbox-label input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
 /* Headcount stepper */
-.checkbox-label{flex-wrap:wrap;gap:4px 8px}
+.checkbox-label{flex-wrap:nowrap;gap:8px}
 .checkbox-label .pname{flex:1;min-width:0}
-.hc-group{display:flex;align-items:center;gap:3px;margin-left:auto}
+.hc-group{display:flex;align-items:center;gap:4px;margin-left:6px}
 .hc-btn{
   width:26px;height:26px;border-radius:50%;border:1.5px solid #D0C8BE;
-  background:#fff;cursor:pointer;font-size:15px;font-weight:600;
+  background:#fff;cursor:pointer;font-size:14px;font-weight:600;
   display:flex;align-items:center;justify-content:center;
-  color:#5A4A3A;transition:.1s;line-height:1;padding:0;
-  font-family:monospace;
+  color:#5A4A3A;transition:.12s;line-height:1;padding:0;
+  font-family:system-ui,sans-serif;
 }
-.checked .hc-btn{background:#3D3530;border-color:#5A4A3A;color:#F0EBE5}
-.hc-value{font-size:13px;font-weight:600;min-width:18px;text-align:center;font-variant-numeric:tabular-nums}
+.checked .hc-btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#E8DDD2}
+.hc-btn:active{transform:scale(.88)}
+.hc-value{font-size:13px;font-weight:600;min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
 .btn-primary{
   width:100%;padding:14px;border:none;border-radius:12px;
   background:#2C2420;color:#fff;font-size:16px;font-weight:600;
   cursor:pointer;font-family:inherit;transition:.12s;
 }
-.btn-primary:active{opacity:.85}
+.btn-primary:active{opacity:.85;transform:scale(.99)}
 .btn-primary:disabled{opacity:.4;cursor:not-allowed}
 .btn-secondary{
   width:100%;padding:14px;border:1.5px solid #E0D8D0;border-radius:12px;
-  background:#fff;color:#5A4A3A;font-size:16px;font-weight:500;
+  background:#fff;color:#6A5A4A;font-size:16px;font-weight:500;
   cursor:pointer;font-family:inherit;transition:.12s;margin-top:8px;
 }
-.btn-secondary:active{background:#F5F3F0}
+.btn-secondary:active{background:#F8F5F1}
 /* ========== FORM ROW ========== */
 .form-row{display:flex;gap:12px}
 .form-row .form-group{flex:1}
 /* ========== TOAST ========== */
 .toast{
   position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
-  background:#2C2420;color:#fff;padding:12px 24px;border-radius:12px;
+  background:#2C2420;color:#fff;padding:12px 24px;border-radius:14px;
   font-size:14px;font-weight:500;z-index:200;
   opacity:0;transition:opacity .25s;pointer-events:none;
-  white-space:nowrap;
+  white-space:nowrap;box-shadow:0 4px 16px rgba(44,36,32,.2);
 }
 .toast.show{opacity:1}
 /* ========== DELETE CONFIRM ========== */
 .confirm-overlay{
   position:fixed;inset:0;z-index:150;
-  background:rgba(44,36,32,.5);backdrop-filter:blur(4px);
+  background:rgba(44,36,32,.5);backdrop-filter:blur(6px);
   display:flex;align-items:center;justify-content:center;
   opacity:0;pointer-events:none;transition:opacity .2s;
   padding:20px;
 }
 .confirm-overlay.open{opacity:1;pointer-events:auto}
 .confirm-box{
-  background:#fff;border-radius:16px;padding:24px;max-width:340px;width:100%;
-  text-align:center;
+  background:#fff;border-radius:20px;padding:28px 24px 20px;max-width:340px;width:100%;
+  text-align:center;box-shadow:0 8px 32px rgba(44,36,32,.12);
 }
-.confirm-box p{font-size:15px;margin-bottom:20px;line-height:1.5}
+.confirm-box p{font-size:15px;margin-bottom:24px;line-height:1.5}
 .confirm-actions{display:flex;gap:10px}
-.confirm-actions button{flex:1;padding:12px;border-radius:10px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.confirm-actions button{flex:1;padding:12px;border-radius:12px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.12s}
 .confirm-cancel{background:#F0EBE5;color:#5A4A3A}
-.confirm-danger{background:#D1453B;color:#fff}
+.confirm-cancel:active{background:#E5DED5}
+.confirm-danger{background:#CC3D33;color:#fff}
+.confirm-danger:active{opacity:.85}
 /* ========== RESPONSIVE ========== */
 @media(min-width:600px){
   main{padding:24px}
-  .fab{right:calc(50% - 280px + 20px)}
+  .fab{right:calc(50% - 280px + 24px)}
+  .settlement-summary{gap:12px}
 }
 </style>
 </head>
@@ -493,26 +530,34 @@ function renderSettlement() {
 
   // Total spent
   const totalSpent = state.activities.reduce((s, a) => s + a.amount, 0);
+  const maxBal = Math.max(...balances.map(b => Math.abs(b.balance)), 1);
 
   let html = '';
 
   // Overall summary
   html += `<div class="card settlement-card">
-    <h3>📊 總開銷</h3>
-    <div style="text-align:center;padding:8px 0 4px">
-      <span style="font-size:28px;font-weight:700">${formatMoney(totalSpent)}</span>
+    <div class="settlement-total">
+      <div class="label">總開銷</div>
+      <div class="val">${formatMoney(totalSpent)}</div>
     </div>
   </div>`;
 
-  // Each person's balance
+  // Each person's balance with visual bar
   html += `<div class="card settlement-card">
     <h3>💰 每人結餘</h3>
     <div class="settlement-summary">
       ${balances.map(b => {
         const cls = b.balance > 0.005 ? 'positive' : b.balance < -0.005 ? 'negative' : 'zero';
         const sign = b.balance > 0.005 ? '+' : '';
+        const pct = Math.abs(b.balance) / maxBal * 100;
         return `<div class="balance-item">
           <div class="name">${escHtml(b.name)}</div>
+          <div class="bar-wrap">
+            <div class="bar-fill ${cls}" style="width:${Math.max(pct, 4)}%"></div>
+            <span class="bar-label ${cls === 'zero' ? 'dark' : 'light'}">
+              ${b.balance > 0.005 ? '應收' : b.balance < -0.005 ? '欠款' : '平數'}
+            </span>
+          </div>
           <div class="amount ${cls}">${sign}${formatMoney(Math.abs(b.balance))}</div>
         </div>`;
       }).join('')}
@@ -522,7 +567,7 @@ function renderSettlement() {
   // Debt settlement
   if (debts.length > 0) {
     html += `<div class="card settlement-card">
-      <h3>🔄 找數建議（最少轉帳）</h3>
+      <h3>🔄 找數建議</h3>
       ${debts.map(d => `
         <div class="debt-item">
           <span class="from">${escHtml(d.from)}</span>
@@ -531,14 +576,12 @@ function renderSettlement() {
           <span class="amount">${formatMoney(d.amount)}</span>
         </div>
       `).join('')}
-      <div style="margin-top:12px;padding-top:12px;border-top:1px solid #F0EBE5;font-size:13px;color:#8A7A6A;text-align:center">
-        ✅ 全部清晒只需要 ${debts.length} 筆轉帳
-      </div>
+      <div class="debt-summary">${debts.length} 筆轉帳即可清數</div>
     </div>`;
   } else if (creditors.length === 0 && debtors.length === 0 && state.activities.length > 0) {
-    html += `<div class="card settlement-card" style="text-align:center;color:#2E7D6F;padding:24px">
-      <div style="font-size:32px;margin-bottom:8px">✅</div>
-      <div style="font-weight:600">所有數已清！冇人欠對方錢</div>
+    html += `<div class="card settlement-card" style="text-align:center;padding:24px">
+      <div style="font-size:36px;margin-bottom:10px">✅</div>
+      <div style="font-weight:600;color:#2A7A6B">所有數已清！冇人欠對方錢</div>
     </div>`;
   }
 
