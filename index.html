@@ -422,7 +422,10 @@ function renderActivities() {
           <div class="activity-title">${escHtml(act.title)}</div>
           <div class="activity-date">${act.date || ''}</div>
         </div>
-        <div class="activity-amount">${formatMoney(act.amount)}</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="activity-amount">${formatMoney(act.amount)}</div>
+          <button class="btn-delete" onclick="confirmDeleteActivity('${act.id}')" title="刪除活動" style="font-size:14px">✕</button>
+        </div>
       </div>
       <div class="activity-meta">
         <strong>${escHtml(payer ? payer.name : '?')}</strong> 俾咗錢
@@ -600,22 +603,37 @@ function showAddPersonModal() {
   });
 }
 
-// ======================== DELETE PERSON ========================
+// ======================== DELETE ========================
 let pendingDeletePersonId = null;
+let pendingDeleteActivityId = null;
 
 function confirmDeletePerson(id) {
   pendingDeletePersonId = id;
+  pendingDeleteActivityId = null;
   const person = getPerson(id);
-  const related = state.activities.filter(a => a.paidBy === id || a.participants.includes(id));
+  // Support both old (string[]) and new ({id, count}[]) participant format
+  const related = state.activities.filter(a => {
+    if (a.paidBy === id) return true;
+    return a.participants.some(p => (typeof p === 'string' ? p : p.id) === id);
+  });
   let msg = `確定要刪除「${person ? person.name : '?'}」？`;
-  if (related.length > 0) msg += `\n（關聯 ${related.length} 項活動，唔會刪除活動）`;
+  if (related.length > 0) msg += `（關聯 ${related.length} 項活動，數量唔會刪除）`;
   document.getElementById('confirmText').textContent = msg;
+  document.getElementById('confirmOverlay').classList.add('open');
+}
+
+function confirmDeleteActivity(id) {
+  pendingDeleteActivityId = id;
+  pendingDeletePersonId = null;
+  const act = state.activities.find(a => a.id === id);
+  document.getElementById('confirmText').textContent = `確定要刪除「${act ? act.title : '?'}」活動？`;
   document.getElementById('confirmOverlay').classList.add('open');
 }
 
 document.getElementById('confirmCancel').addEventListener('click', () => {
   document.getElementById('confirmOverlay').classList.remove('open');
   pendingDeletePersonId = null;
+  pendingDeleteActivityId = null;
 });
 
 document.getElementById('confirmOk').addEventListener('click', () => {
@@ -623,14 +641,20 @@ document.getElementById('confirmOk').addEventListener('click', () => {
     state.people = state.people.filter(p => p.id !== pendingDeletePersonId);
     // Keep activities but remove this person from participants
     state.activities.forEach(a => {
-      a.participants = a.participants.filter(pid => pid !== pendingDeletePersonId);
+      a.participants = a.participants.filter(p => (typeof p === 'string' ? p : p.id) !== pendingDeletePersonId);
     });
     saveState();
     render();
-    toast('已刪除');
+    toast('已刪除人物');
+  } else if (pendingDeleteActivityId) {
+    state.activities = state.activities.filter(a => a.id !== pendingDeleteActivityId);
+    saveState();
+    render();
+    toast('已刪除活動');
   }
   document.getElementById('confirmOverlay').classList.remove('open');
   pendingDeletePersonId = null;
+  pendingDeleteActivityId = null;
 });
 
 // ======================== ADD ACTIVITY ========================
