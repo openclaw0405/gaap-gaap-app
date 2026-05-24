@@ -421,12 +421,15 @@ function renderPeople() {
   const container = document.getElementById('peopleList');
   if (state.people.length === 0) {
     container.innerHTML = `<div class="empty-state">
-      <div class="icon">👥</div>
-      <p>未有隊友<br>按右下角 <strong>+</strong> 加入人物</p>
+      <div class="icon">🏠</div>
+      <p>每個人物代表一個家庭<br>按右下角 <strong>+</strong> 加入</p>
     </div>`;
     return;
   }
-  container.innerHTML = state.people.map(p => {
+  container.innerHTML = `<div style="font-size:12px;color:#B0A090;margin-bottom:10px;padding:0 2px">
+    蜜組 Gathering · 每個人物以一個家庭作單位，活動時可設定人數
+  </div>
+  ${state.people.map(p => {
     const bal = personBalance(p.id);
     const balClass = bal > 0.005 ? 'positive' : bal < -0.005 ? 'negative' : 'zero';
     const balText = bal > 0.005 ? `应收 ${formatMoney(bal)}` : bal < -0.005 ? `欠款 ${formatMoney(Math.abs(bal))}` : '平數';
@@ -438,7 +441,7 @@ function renderPeople() {
       </div>
       <button class="btn-delete" onclick="confirmDeletePerson('${p.id}')" title="刪除">✕</button>
     </div>`;
-  }).join('');
+  }).join('')}`;
 }
 
 function renderActivities() {
