@@ -427,7 +427,7 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
 
 function formatMoney(n) {
   const abs = Math.abs(n);
-  const s = 'HK$ ' + abs.toLocaleString('zh-HK', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const s = '£ ' + abs.toLocaleString('zh-HK', {minimumFractionDigits:2, maximumFractionDigits:2});
   return n < 0 ? '-' + s : s;
 }
 
@@ -815,7 +815,7 @@ function showAddActivityModal() {
         <input class="form-input" type="date" id="actDate" value="${today}">
       </div>
       <div class="form-group">
-        <label>總金額 (HK$)</label>
+        <label>總金額 (£)</label>
         <input class="form-input" type="number" id="actAmount" placeholder="0" min="0" step="0.01">
       </div>
     </div>
